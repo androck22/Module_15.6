@@ -21,26 +21,9 @@ namespace Module_15._6
 
         static string[] GetAllStudents(Classroom[] classes)
         {
-            var allStudents = new List<string>();
+            var allStudents = classes.SelectMany(s => s.Students).ToArray();
 
-            foreach (var students in classes)
-            {
-                var edit = students.Students.Select(s=>s).ToList();
-
-                foreach (var student in edit)
-                {
-                    allStudents.Add(student);
-                }
-            }
-
-            var result = allStudents.ToArray();
-
-            return result;
-        }
-
-        public class Classroom
-        {
-            public List<string> Students = new List<string>();
-        }
+            return allStudents;
+        }       
     }
 }
